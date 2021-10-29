@@ -1,23 +1,45 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import "./Home.css"
 import Product from "./Product"
+import { useStateValue } from "./StateProvider"
+import { db } from "./firebase"
 
 function Home() {
+    
+    const [{ basket, user, search, menu }, dispatch] = useStateValue();
+    
+    /*
+    const [products, setProducts] = useState([])
+    useEffect(() => {
+        db.collection('products').onSnapshot(snapshot => (
+         setProducts(snapshot.docs.map(doc => ({
+            id: doc.id,
+            data: doc.data()    
+        })))
+    ))
+    //console.log('Title useEffect(): ', products[0])
+    }, [])
+    */
+
+    /*
+    var book = db.collection('products').get().then((snapshot) => {
+        getInfo(snapshot.docs)
+    })
+
+    function getInfo(data) {
+        data.forEach(doc => {
+            var info = doc.data();
+            console.log('title', info.title)
+        })
+    }
+    */
+
     /*
     https://images-eu.ssl-images-amazon.com/images/G/02/
     digital/video/merch2016/Hero/Covid19/Generic/
     GWBleedingHero_ENG_COVIDUPDATE__XSite_1500x600_PV_en-GB._CB428684220_.jpg
     */
-    return (
-        <div className="home">
-            <div className="home__container">
-
-                <img 
-                    className="home__image"
-                    src="https://images-eu.ssl-images-amazon.com/images/G/02/digital/video/merch2016/Hero/Covid19/Generic/GWBleedingHero_ENG_COVIDUPDATE__XSite_1500x600_PV_en-GB._CB428684220_.jpg" 
-                    alt=""
-                />
-                <div className="home__row">
+   /* 
                     <Product 
                         id="0001"
                         title="the lean startup"
@@ -25,6 +47,42 @@ function Home() {
                         image="https://play-lh.googleusercontent.com/VUJ-ENDVVS_8IhabKfewbXZ6f4_t0a4AbZZ2GURq55gTfZEWeBcxFkYQQ6sCQ-UWuI8adABab7SYQg=s400-rw"
                         rating={5}
                     />
+
+                    <Product 
+                        id=
+                        title=
+                        price=
+                        image=
+                        rating=
+                    />
+
+                    <Product 
+                        id={products[0].id}
+                        title={products[0].data.title}
+                        price={products[0].data.price}
+                        image={products[0].data.image}
+                        rating={products[0].data.rating}
+                    />
+   */
+    return (
+        <div className="home">
+            <div className="home__container">
+            
+                <img 
+                    className="home__image"
+                    src="https://images-eu.ssl-images-amazon.com/images/G/02/digital/video/merch2016/Hero/Covid19/Generic/GWBleedingHero_ENG_COVIDUPDATE__XSite_1500x600_PV_en-GB._CB428684220_.jpg" 
+                    alt=""
+                />
+                <div className="home__row">
+                
+                    <Product 
+                        id="0001"
+                        title="the lean startup"
+                        price={29.99}
+                        image="https://play-lh.googleusercontent.com/VUJ-ENDVVS_8IhabKfewbXZ6f4_t0a4AbZZ2GURq55gTfZEWeBcxFkYQQ6sCQ-UWuI8adABab7SYQg=s400-rw"
+                        rating={5}
+                    />
+                    {console.log('Home menu: ', menu)}
                     <Product 
                         id="0002"
                         title="Kenwood kMix Stand Mixer"

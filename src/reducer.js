@@ -1,6 +1,8 @@
 export const initialState = {
+    menu: [],
     basket: [],
-    user: null
+    user: null,
+    search: ''
 };
 
 export const getBasketTotal = (basket) => 
@@ -9,11 +11,26 @@ export const getBasketTotal = (basket) =>
 const reducer = (state, action) => {
     console.log(action);
     switch(action.type) {
+        case 'CHANGE_SEARCH': 
+            return {
+                ...state,
+                search: action.item
+            };
+        case 'ADD_TO_MENU':
+            return {
+                ...state,
+                menu: [...state.menu, action.item],
+            };
         case 'ADD_TO_BASKET':
             return {
                 ...state,
                 basket: [...state.basket, action.item],
                  
+            };
+        case 'EMPTY_BASKET': 
+            return {
+                ...state,
+                basket: []
             };
 
         case 'REMOVE_FROM_BASKET':

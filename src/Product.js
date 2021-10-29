@@ -1,12 +1,24 @@
-import React from 'react'
+import React, {useEffect} from "react";
 import "./Product.css";
 import { useStateValue } from "./StateProvider";
 
 function Product({id, title, image, price, rating}) {
     const [{ basket }, dispatch] = useStateValue();
-    
-    
-
+    /*
+    useEffect(() => {
+        dispatch({
+            type: 'ADD_TO_MENU',
+            item: {
+                id: id,
+                key: id,
+                title: title,
+                image: image,
+                price: price,
+                rating: rating
+            }
+        })
+      }, [])
+      */
     const addToBasket = () => {
         dispatch({
             type: 'ADD_TO_BASKET',
@@ -23,6 +35,7 @@ function Product({id, title, image, price, rating}) {
 
     return (
         <div className="product">
+            
             <div className="product__info">
                 <p>{title}</p>
                 <p className="product__price">
