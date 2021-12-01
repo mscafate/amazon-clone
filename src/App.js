@@ -7,19 +7,24 @@ import Checkout from "./Checkout";
 import Login from "./Login";
 import { auth, db } from "./firebase";
 import { useStateValue } from "./StateProvider";
-import Payment from "./Payment";
 import Orders from "./Orders";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import Search from "./Search";
-import Client from "./Client";
-
-const promise = loadStripe(
-  "pk_test_51JcHJpFVhnNedSqNMqqGVnFi6KuAq2wJBnbm1qHxA9H7wdknHYpyRfhGLJWdPS2PWwBJGlikYATmAYhhVFOglS6n00GeOb57J1"
-);
+import CheckoutStripe from "./CheckoutStripe";
 
 function App() {
   const [{ menu }, dispatch] = useStateValue();
+
+  const [clientSecret, setClientSecret] = useState("");
+
+  const appearance = {
+    theme: "stripe",
+  };
+  const options = {
+    clientSecret,
+    appearance,
+  };
 
   function addToMenu(products) {
     console.log("products:", products);
@@ -103,11 +108,17 @@ function App() {
 
           <Route path="/payment">
             <Header />
-
-            <Elements stripe={promise}>
+            <CheckoutStripe />
+            {/*
+            <Elements stripe={stripePromise}>
+              
+              <CheckoutForm />
               <Payment />
-              {/*<Client />*/}
+              <Client />
+              <Pay />
+              
             </Elements>
+            */}
           </Route>
 
           <Route path="/">

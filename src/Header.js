@@ -41,10 +41,10 @@ function Header() {
             handleSearch(event.target.value);
           }}
         />
-        <Link to="/search">
-          <SearchIcon className="header__searchIcon" />
-        </Link>
       </div>
+      <Link className="header__searchIcon" to="/search">
+        <SearchIcon />
+      </Link>
 
       <div className="header__nav">
         <Link to={!user ? "/login" : "/"}>

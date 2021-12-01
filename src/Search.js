@@ -1,15 +1,14 @@
 import React from "react";
 
-import { useStateValue } from "./StateProvider"
-import SearchProduct from "./SearchProduct"
+import { useStateValue } from "./StateProvider";
+import SearchProduct from "./SearchProduct";
 function Search() {
-    const [{ menu, search, user }, dispatch] = useStateValue();
-    
+  const [{ menu, search, user }, dispatch] = useStateValue();
 
-    if(search !== '') {
-        console.log('menu: ', menu);
-        // student.firstName.toLowerCase().includes(searchTerm.toLowerCase())
-        /*
+  if (search !== "") {
+    console.log("menu: ", menu);
+    // student.firstName.toLowerCase().includes(searchTerm.toLowerCase())
+    /*
         const addToMenu = () => {
             dispatch({
                 type: 'ADD_TO_MENU',
@@ -24,7 +23,7 @@ function Search() {
             })
         }    
         */
-       /*
+    /*
         useEffect(() => {
             dispatch({
                 type: 'ADD_TO_MENU',
@@ -39,39 +38,31 @@ function Search() {
             })
           }, search)
           */
-        return (
-            <div>
-                {menu?.filter((product) => {
-                    if(product.title.toLowerCase().includes(search.toLowerCase())) {
-                        console.log('filter: ', product.title)
-                        return product;
-                    }
-                }).map(product => {
-                    return (
-                        
-                        
-                        <SearchProduct 
-                            id={product.id}
-                            title={product.title}
-                            price={product.price}
-                            image={product.image}
-                            rating={product.rating}
-                        />
-                        
-                    )
-                })
-                
-                }
-            </div>
-        )
-    } else {
     return (
-        <div>
-            nothing
-            
-        </div>
-    )
-    }
+      <div>
+        {menu
+          ?.filter((product) => {
+            if (product.title.toLowerCase().includes(search.toLowerCase())) {
+              console.log("filter: ", product.title);
+              return product;
+            }
+          })
+          .map((product) => {
+            return (
+              <SearchProduct
+                id={product.id}
+                title={product.title}
+                price={product.price}
+                image={product.image}
+                rating={product.rating}
+              />
+            );
+          })}
+      </div>
+    );
+  } else {
+    return <div>nothing</div>;
+  }
 }
 
-export default Search
+export default Search;
