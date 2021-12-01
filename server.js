@@ -20,7 +20,7 @@ const cors = require("cors");
 
 app.use(
   cors({
-    origin: "https://clone-3ca94.web.app/", //origin: "http://localhost:4242",//origin: "http://localhost:5500",
+    origin: "https://ecommerce-amazon-clone.herokuapp.com/", //"https://clone-3ca94.web.app/", //origin: "http://localhost:4242",//origin: "http://localhost:5500",
   })
 );
 
