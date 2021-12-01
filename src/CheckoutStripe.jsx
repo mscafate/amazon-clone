@@ -20,7 +20,7 @@ export default function CheckoutStripe() {
     console.log('basket >>> ', basket);
     console.log('price', getBasketTotal(basket))
     // Create PaymentIntent as soon as the page loads
-    await fetch("http://localhost:4242/create-payment-intent", {
+    await fetch(`${process.env.PORT}/create-payment-intent`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ 
