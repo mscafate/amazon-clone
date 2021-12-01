@@ -20,7 +20,7 @@ export default function CheckoutStripe() {
     console.log('basket >>> ', basket);
     console.log('price', getBasketTotal(basket))
     // Create PaymentIntent as soon as the page loads
-    await fetch('https://ecommerce-amazon-clone.herokuapp.com/create-payment-intent', {
+    await fetch('/create-payment-intent', {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ 
