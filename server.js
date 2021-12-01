@@ -7,6 +7,7 @@ const stripe = require("stripe")(
 const endpointSecret = "whsec_ZRJMG3CCb2EwV0ICOBxa1xHOUQBEWH8W";
 
 app.use(express.static("public"));
+
 app.use((req, res, next) => {
   if (req.originalUrl === "/webhook") {
     next();
@@ -14,14 +15,14 @@ app.use((req, res, next) => {
     express.json()(req, res, next);
   }
 });
+
 //app.use(express.json());
 
 const cors = require("cors");
 
 app.use(
-  cors({
-    origin: "https://ecommerce-amazon-clone.herokuapp.com/", //"https://clone-3ca94.web.app/", //origin: "http://localhost:4242",//origin: "http://localhost:5500",
-  })
+  cors()
+  //"https://ecommerce-amazon-clone.herokuapp.com/", //"https://clone-3ca94.web.app/", //origin: "http://localhost:4242",//origin: "http://localhost:5500",
 );
 
 const calculateOrderAmount = (items) => {
@@ -106,5 +107,5 @@ app.post(
   }
 );
 
-app.listen("/" || 4242);
+app.listen(process.env.PORT || 4242);
 //app.listen(4242, () => console.log("Node server listening on port 4242!"));
