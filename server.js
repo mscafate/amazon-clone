@@ -20,7 +20,7 @@ const cors = require("cors");
 
 app.use(
   cors({
-    origin: "http://localhost:3000", //origin: "http://localhost:4242",//origin: "http://localhost:5500",
+    origin: "https://clone-3ca94.web.app/", //origin: "http://localhost:4242",//origin: "http://localhost:5500",
   })
 );
 
@@ -106,4 +106,5 @@ app.post(
   }
 );
 
-app.listen(4242, () => console.log("Node server listening on port 4242!"));
+app.listen(process.env.PORT || 4242);
+//app.listen(4242, () => console.log("Node server listening on port 4242!"));
