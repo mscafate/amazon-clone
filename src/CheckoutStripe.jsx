@@ -16,12 +16,14 @@ const stripePromise = loadStripe("pk_test_51JcHJpFVhnNedSqNMqqGVnFi6KuAq2wJBnbm1
 export default function CheckoutStripe() {
   const [clientSecret, setClientSecret] = useState("");
   const [{ basket, user, }] = useStateValue();
+  const [isLoading, setIsLoading] = useState('')
 
   useEffect(async () => {
     console.log('basket >>> ', basket);
     console.log('price', getBasketTotal(basket))
     // Create PaymentIntent as soon as the page loads
     if (user != null) {
+      setIsLoading('loading...')
     await fetch('https://ecommerce-amazon-clone-server.herokuapp.com/create-payment-intent', {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -36,6 +38,7 @@ export default function CheckoutStripe() {
     })
       //.then((res) => res.json())
       .then((res) => {
+        setIsLoading('')
         if (res.ok) {
           console.log("this is response", res);
           return res.json();
@@ -71,6 +74,9 @@ export default function CheckoutStripe() {
           <Payment clientSecret={clientSecret}/>
         </Elements>
       )}
+      </div>
+      <div className='payment__footer'>
+        {isLoading}
       </div>
       <div className='payment__footer'>
         Please use 4242... (repeated) to fill out payment information.
