@@ -3,9 +3,10 @@ import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import { useStateValue } from "./StateProvider";
 import { getBasketTotal, stripePrice, basketPrice } from "./reducer";
+import './CheckoutStripe.css'
 
-import CheckoutForm from "./CheckoutForm";
-import "./App.css";
+import Payment from "./Payment";
+//import "./App.css";
 
 // Make sure to call loadStripe outside of a component’s render to avoid
 // recreating the Stripe object on every render.
@@ -20,6 +21,7 @@ export default function CheckoutStripe() {
     console.log('basket >>> ', basket);
     console.log('price', getBasketTotal(basket))
     // Create PaymentIntent as soon as the page loads
+    if (user != null) {
     await fetch('https://ecommerce-amazon-clone-server.herokuapp.com/create-payment-intent', {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -47,6 +49,10 @@ export default function CheckoutStripe() {
       .catch((e) => {
         console.log(e.error);
       });
+    } else {
+      console.log("no user!!");
+      window.location = "/login"; // <<< change <<<
+    }
   }, []);
 
   const appearance = {
@@ -59,11 +65,19 @@ export default function CheckoutStripe() {
 
   return (
     <div className="App">
+      <div className='body'>
       {clientSecret && (
         <Elements options={options} stripe={stripePromise}>
-          <CheckoutForm clientSecret={clientSecret}/>
+          <Payment clientSecret={clientSecret}/>
         </Elements>
       )}
+      </div>
+      <div className='payment__footer'>
+        Please use 4242... (repeated) to fill out payment information.
+      </div>
+      <div className='payment__footer'>
+      This is a fake store. I dont want your real money.
+      </div>
     </div>
   );
 }

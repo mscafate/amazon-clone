@@ -12,9 +12,9 @@ import { getBasketTotal } from "./reducer";
 import axios from "axios";
 import CurrencyFormat from "react-currency-format";
 import CheckoutProduct from "./CheckoutProduct";
-import './CheckoutForm.css'
+import './Payment.css'
 
-export default function CheckoutForm(clientSecret) {
+export default function Payment(clientSecret) {
   const [{ basket, user }, dispatch] = useStateValue();
   const stripe = useStripe();
   const elements = useElements();
@@ -30,7 +30,7 @@ export default function CheckoutForm(clientSecret) {
 
   
   useEffect(async () => {
-    console.log('CheckoutForm.jsx useEffect!!!')
+    console.log('Payment.jsx useEffect!!!')
     if (!stripe) {
       return;
     }

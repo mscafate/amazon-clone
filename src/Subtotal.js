@@ -4,12 +4,23 @@ import CurrencyFormat from "react-currency-format";
 import { useStateValue } from "./StateProvider";
 import { getBasketTotal } from "./reducer";
 import { useHistory } from "react-router-dom";
-import StripeCheckout from "./StripeCheckout";
+//import StripeCheckout from "./StripeCheckout";
 import { Link } from "react-router-dom";
 
 function Subtotal() {
   const history = useHistory();
-  const [{ basket }, dispatch] = useStateValue();
+  const [{ basket, user }, dispatch] = useStateValue();
+
+  function isUser() {
+    if (user) {
+      console.log("user present");
+      return "/payment";
+    } else {
+      console.log("no user");
+
+      return "/login";
+    }
+  }
   return (
     <div className="subtotal">
       <CurrencyFormat
@@ -31,10 +42,10 @@ function Subtotal() {
         prefix={"$"}
       />
 
-      <Link to="/payment">
-        <div>payment</div>
+      <Link to={isUser()}>
+        <button className="payment__button">Billing Information</button>
       </Link>
-      <StripeCheckout />
+      {/*<StripeCheckout />*/}
       {/*<button onClick={e => history.push('/payment')}>Proceed to Checkout</button>*/}
     </div>
   );

@@ -109,16 +109,6 @@ function App() {
           <Route path="/payment">
             <Header />
             <CheckoutStripe />
-            {/*
-            <Elements stripe={stripePromise}>
-              
-              <CheckoutForm />
-              <Payment />
-              <Client />
-              <Pay />
-              
-            </Elements>
-            */}
           </Route>
 
           <Route path="/">

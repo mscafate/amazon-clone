@@ -122,6 +122,9 @@ function Home() {
             image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4RC6S4waY_pObQrsyiVx8h7ynaMrGKnE6QkkXLf8il2TAj7FDra-JEC_RER1JdSSglb4-DhU&usqp=CAc"
           />
         </div>
+        <div className="home__row home__footer">
+          This is a FAKE amazon store created by Michael Scafate
+        </div>
       </div>
     </div>
   );

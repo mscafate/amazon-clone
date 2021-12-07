@@ -1,3 +1,4 @@
+/*
 #root {
   display: flex;
   align-items: center;
@@ -24,7 +25,6 @@ form {
   padding: 40px;
 }
 
-
 #payment-message {
   color: rgb(105, 115, 134);
   font-size: 16px;
@@ -36,8 +36,9 @@ form {
 #payment-element {
   margin-bottom: 24px;
 }
-
+*/
 /* Buttons and links */
+/*
 button {
   background: #5469d4;
   font-family: Arial, sans-serif;
@@ -62,8 +63,9 @@ button:disabled {
   opacity: 0.5;
   cursor: default;
 }
-
+*/
 /* spinner/processing state, errors */
+/*
 .spinner,
 .spinner:before,
 .spinner:after {
@@ -87,7 +89,7 @@ button:disabled {
 .spinner:before,
 .spinner:after {
   position: absolute;
-  content: '';
+  content: "";
 }
 
 .spinner:before {
@@ -132,4 +134,12 @@ button:disabled {
     width: 80vw;
     min-width: initial;
   }
+}
+*/
+.payment__footer {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  color: darkgrey;
+  font-weight: bold;
 }
