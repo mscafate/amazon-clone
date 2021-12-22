@@ -48,7 +48,7 @@ function App() {
     console.log("this is db >>>", db);
     db.collection("products").onSnapshot((snapshot) => {
       const products = snapshot.docs.map((doc) => {
-        console.log("this is doc >>", doc);
+        console.log("this is doc >>", doc.data());
         return {
           id: doc.id,
           data: doc.data(),

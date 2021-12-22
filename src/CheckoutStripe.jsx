@@ -16,14 +16,21 @@ const stripePromise = loadStripe("pk_test_51JcHJpFVhnNedSqNMqqGVnFi6KuAq2wJBnbm1
 export default function CheckoutStripe() {
   const [clientSecret, setClientSecret] = useState("");
   const [{ basket, user, }] = useStateValue();
-  const [isLoading, setIsLoading] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
+  const [message, setMessage] = useState('')
 
   useEffect(async () => {
     console.log('basket >>> ', basket);
     console.log('price', getBasketTotal(basket))
+    console.log('should be false', isLoading)
     // Create PaymentIntent as soon as the page loads
     if (user != null) {
-      setIsLoading('loading...')
+      setIsLoading(true)
+      setMessage('loading server from heroku please wait...')
+      console.log('should be true', isLoading)
+
+
+      
     await fetch('https://ecommerce-amazon-clone-server.herokuapp.com/create-payment-intent', {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -39,6 +46,7 @@ export default function CheckoutStripe() {
       //.then((res) => res.json())
       .then((res) => {
         setIsLoading('')
+        setMessage('Please use 4242... (repeated) to fill out payment information.')
         if (res.ok) {
           console.log("this is response", res);
           return res.json();
@@ -76,13 +84,7 @@ export default function CheckoutStripe() {
       )}
       </div>
       <div className='payment__footer'>
-        {isLoading}
-      </div>
-      <div className='payment__footer'>
-        Please use 4242... (repeated) to fill out payment information.
-      </div>
-      <div className='payment__footer'>
-      This is a fake store. I dont want your real money.
+        {message}
       </div>
     </div>
   );
